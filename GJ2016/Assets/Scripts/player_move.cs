@@ -6,14 +6,12 @@ public class player_move : MonoBehaviour {
     public int health;
     public int damage;
     public int power;
-<<<<<<< HEAD
 
-    float movementSpeed;
-    int attackSpeed;
-    float knifeVelocity;
 
-    public Rigidbody2D knife;
-=======
+
+
+
+
     public float knifeVelocity;
     public Rigidbody2D knife;
     public Text healthText;
@@ -21,9 +19,7 @@ public class player_move : MonoBehaviour {
     public Enemy1 enemy1Script;
     public Text powerText;
     public Slider powerSlider;
->>>>>>> origin/terry
-
-    float movementSpeed;
+   float movementSpeed;
     float attackSpeed;
     int maxHealth;
     float attackTimer;
@@ -35,10 +31,7 @@ public class player_move : MonoBehaviour {
         damage = 20;
         power = 65;
         movementSpeed = 5;
-<<<<<<< HEAD
-        attackSpeed = 1;
         knifeVelocity = 4f;
-=======
         attackSpeed = .4f;
         knifeVelocity = 10;
         maxHealth = 100;
@@ -48,7 +41,6 @@ public class player_move : MonoBehaviour {
         powerSlider.minValue = 0;
         powerSlider.maxValue = maxPower;
        
->>>>>>> origin/terry
     }
 
     void Update()
