@@ -6,12 +6,6 @@ public class player_move : MonoBehaviour {
     public int health;
     public int damage;
     public int power;
-
-
-
-
-
-
     public float knifeVelocity;
     public Rigidbody2D knife;
     public Text healthText;
@@ -19,7 +13,7 @@ public class player_move : MonoBehaviour {
     public Enemy1 enemy1Script;
     public Text powerText;
     public Slider powerSlider;
-   float movementSpeed;
+    float movementSpeed;
     float attackSpeed;
     int maxHealth;
     float attackTimer;
