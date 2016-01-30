@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Enemy1.cs" />
      <Compile Include="Assets\Scripts\Enemy2.cs" />
+     <Compile Include="Assets\Scripts\Enemy3.cs" />
      <Compile Include="Assets\Scripts\KnifeDestroy.cs" />
      <Compile Include="Assets\Scripts\player_move.cs" />
  <Reference Include="UnityEngine.UI">

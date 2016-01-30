@@ -6,23 +6,20 @@ public class Enemy1 : MonoBehaviour
     //Follow enemy Variant 1
     public player_move playerScript;
     // public variable
-    public int health;
-    public int damage;
-    public int power;
+    public int health = 20 ;
+    public int damage = 10;
+    public int power = 500;
     public bool isFollowing;
 
     //private variables
-    int movementSpeed;
+    int movementSpeed = 1;
     GameObject player;
 
     // Use this for initialization
     void Start()
     {
         //Initializing stat variables
-        health = 20;
-        damage = 5;
-        movementSpeed = 1;
-        power = 1;
+        
 
         //Finding Player
         player = GameObject.FindWithTag("Player");
@@ -73,6 +70,7 @@ public class Enemy1 : MonoBehaviour
 
         if (health <= 0)
         {
+            playerScript.power += power;
             Destroy(this.gameObject);
         }
     }
