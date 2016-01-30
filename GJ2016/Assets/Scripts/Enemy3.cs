@@ -1,36 +1,38 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-//Enemy Shooting 
-
-public class Enemy2 : MonoBehaviour {
-    //public variables used outside this code
-    public int health;
-    public int damage;
-    public int power;
+public class Enemy3 : MonoBehaviour {
+    //Follow enemy Variant 1
+    public player_move playerScript;
+    // public variable
+    public int health = 40;
+    public int damage = 10;
+    public int power = 7;
     public bool isFollowing;
-    //Variables used for this class
-    int movementSpeed;
-    int shotSpeed;
+
+    //private variables
+    float movementSpeed = .5f;
     GameObject player;
-	// Use this for initialization
-	void Start () {
-        health = 40;
-        damage = 10;
-        power = 2;
-        movementSpeed = 1;
-        shotSpeed = 5;
+
+    // Use this for initialization
+    void Start()
+    {
+        //Initializing stat variables
+
+
         //Finding Player
         player = GameObject.FindWithTag("Player");
+
         isFollowing = false;
-	}
+
+    }
 
     // Update is called once per frame
     void Update()
     {
         if (isFollowing == true)
         {
-
+            movementSpeed += 0.01f;
             float yDifference = player.transform.position.y - transform.position.y;
             if (yDifference > 1f)
             {
@@ -65,26 +67,39 @@ public class Enemy2 : MonoBehaviour {
 
             }
         }
-    }
 
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Knife")
+        {
+            health -= playerScript.damage;
+        }
+    }
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player")
         {
-           //Shoot
+            isFollowing = true;
         }
+
 
     }
     void OnTriggerStay2D(Collider2D col)
     {
+
 
     }
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player")
         {
-            //shoot
-
+            isFollowing = false;
+            movementSpeed = 1;
         }
     }
 }

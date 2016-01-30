@@ -48,7 +48,12 @@
      <Compile Include="Assets\Scripts\DestroyArrow.cs" />
      <Compile Include="Assets\Scripts\Enemy1.cs" />
      <Compile Include="Assets\Scripts\Enemy2.cs" />
+<<<<<<< HEAD
      <Compile Include="Assets\Scripts\Enemy2Shoot.cs" />
+=======
+     <Compile Include="Assets\Scripts\Enemy3.cs" />
+     <Compile Include="Assets\Scripts\KnifeDestroy.cs" />
+>>>>>>> origin/terry
      <Compile Include="Assets\Scripts\player_move.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Unity5/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
