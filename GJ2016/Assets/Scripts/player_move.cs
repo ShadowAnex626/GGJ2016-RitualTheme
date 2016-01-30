@@ -6,15 +6,11 @@ public class player_move : MonoBehaviour {
     public int damage;
     public int power;
 
-<<<<<<< HEAD
     float movementSpeed;
     int attackSpeed;
-=======
-    public float speed;
-    public float knifeVelocity;
+    float knifeVelocity;
 
     public Rigidbody2D knife;
->>>>>>> refs/remotes/origin/terry
 
     void Start()
     {
@@ -23,6 +19,7 @@ public class player_move : MonoBehaviour {
         power = 0;
         movementSpeed = 5;
         attackSpeed = 1;
+        knifeVelocity = 4f;
     }
 
     void Update()
