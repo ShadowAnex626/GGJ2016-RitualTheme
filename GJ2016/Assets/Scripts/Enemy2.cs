@@ -4,10 +4,13 @@ using System.Collections;
 //Enemy Shooting 
 
 public class Enemy2 : MonoBehaviour {
+
+    public player_move playerScript;
+
     //public variables used outside this code
-    public int health;
-    public int damage;
-    public int power;
+    public int health = 20;
+    public int damage = 10;
+    public int power = 500;
     public bool isFollowing;
     //Variables used for this class
     int movementSpeed;
@@ -15,9 +18,6 @@ public class Enemy2 : MonoBehaviour {
     GameObject player;
 	// Use this for initialization
 	void Start () {
-        health = 40;
-        damage = 10;
-        power = 2;
         movementSpeed = 1;
         shotSpeed = 5;
         //Finding Player
@@ -65,26 +65,39 @@ public class Enemy2 : MonoBehaviour {
 
             }
         }
-    }
 
+        if (health <= 0)
+        {
+            playerScript.power += power;
+            Destroy(this.gameObject);
+        }
+    }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Knife")
+        {
+            health -= playerScript.damage;
+        }
+    }
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player")
         {
-           //Shoot
+            isFollowing = true;
         }
+
 
     }
     void OnTriggerStay2D(Collider2D col)
     {
+
 
     }
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player")
         {
-            //shoot
-
+            isFollowing = false;
         }
     }
 }

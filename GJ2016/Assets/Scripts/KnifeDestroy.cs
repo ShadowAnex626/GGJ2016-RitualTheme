@@ -2,6 +2,11 @@
 using System.Collections;
 
 public class KnifeDestroy : MonoBehaviour {
+
+    void Awake()
+    {
+        Destroy(gameObject, 2f);
+    }
     
 	// Use this for initialization
 	void Start () {
