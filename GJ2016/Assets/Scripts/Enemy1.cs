@@ -4,7 +4,7 @@ using System.Collections;
 public class Enemy1 : MonoBehaviour
 {
     //Follow enemy Variant 1
-
+    public player_move playerScript;
     // public variable
     public int health;
     public int damage;
@@ -70,18 +70,31 @@ public class Enemy1 : MonoBehaviour
 
                     }
                 }
-    }
 
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Knife")
+        {
+            health -= playerScript.damage;
+        }
+    }
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player")
         {
             isFollowing = true;
         }
+        
 
     }
     void OnTriggerStay2D(Collider2D col)
     {
+        
         
     }
     void OnTriggerExit2D(Collider2D col)

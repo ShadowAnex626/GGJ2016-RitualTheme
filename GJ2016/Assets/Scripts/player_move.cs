@@ -1,20 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class player_move : MonoBehaviour {
     public int health;
     public int damage;
     public int power;
-
-<<<<<<< HEAD
-    float movementSpeed;
-    int attackSpeed;
-=======
-    public float speed;
     public float knifeVelocity;
-
     public Rigidbody2D knife;
->>>>>>> refs/remotes/origin/terry
+    public Text healthText;
+    public Slider healthSlider;
+    public Enemy1 enemy1Script;
+
+    float movementSpeed;
+    float attackSpeed;
+    int maxHealth;
 
     void Start()
     {
@@ -23,11 +23,17 @@ public class player_move : MonoBehaviour {
         power = 0;
         movementSpeed = 5;
         attackSpeed = 1;
+        knifeVelocity = 4;
+        maxHealth = 100;
+        healthSlider.minValue = 0;
+        healthSlider.maxValue = maxHealth;
+
     }
 
     void Update()
     {
-
+        healthText.text = ("HP: " + health);
+        healthSlider.value = health;
         transform.Translate(new Vector3(Input.GetAxis("Horizontal") * movementSpeed, Input.GetAxis("Vertical") * movementSpeed, 0) * Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -59,5 +65,12 @@ public class player_move : MonoBehaviour {
 
         }
 
+    }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Enemy")
+        {
+            health -= enemy1Script.damage;
+        }
     }
 }
