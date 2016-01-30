@@ -7,11 +7,6 @@ public class player_move : MonoBehaviour {
     public int damage;
     public int power;
 
-
-
-
-
-
     public float knifeVelocity;
     public Rigidbody2D knife;
     public Text healthText;
@@ -104,6 +99,11 @@ public class player_move : MonoBehaviour {
         if (col.gameObject.tag == "Enemy")
         {
             health -= enemy1Script.damage;
+        }
+
+        if (col.gameObject.tag == "Arrow")
+        {
+            health -= 20;
         }
     }
     void OnCollisionStay2D(Collision2D col)

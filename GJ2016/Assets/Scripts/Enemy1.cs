@@ -19,7 +19,7 @@ public class Enemy1 : MonoBehaviour
     void Start()
     {
         //Initializing stat variables
-        
+        Debug.Log(health);
 
         //Finding Player
         player = GameObject.FindWithTag("Player");
