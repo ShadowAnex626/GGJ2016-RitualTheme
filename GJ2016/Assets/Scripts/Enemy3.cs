@@ -9,6 +9,7 @@ public class Enemy3 : MonoBehaviour {
     public int damage = 10;
     public int power = 7;
     public bool isFollowing;
+    Animator anim;
 
     //private variables
     float movementSpeed = .5f;
@@ -19,10 +20,9 @@ public class Enemy3 : MonoBehaviour {
     {
         //Initializing stat variables
 
-
         //Finding Player
         player = GameObject.FindWithTag("Player");
-
+        anim = GetComponent<Animator>();
         isFollowing = false;
 
     }
@@ -30,40 +30,67 @@ public class Enemy3 : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        float yDifference = player.transform.position.y - transform.position.y;
+        float xDifference = player.transform.position.x - transform.position.x;
+        Debug.Log(yDifference);
+
+        //if (yDifference > xDifference)
+        //{
+        //    if (yDifference > 0.0f)
+        //    {
+        //        anim.SetInteger("Movement", 2);
+        //    }
+        //    if (yDifference < 0.0f)
+        //    {
+        //        anim.SetInteger("Movement", 4);
+        //    }
+        //}
+            if (xDifference > 0.0f)
+            {
+                anim.SetInteger("Movement", 3);
+            }
+            if (xDifference < 0.0f)
+            {
+                anim.SetInteger("Movement", 1);
+            }
         if (isFollowing == true)
         {
-            movementSpeed += 0.01f;
-            float yDifference = player.transform.position.y - transform.position.y;
-            if (yDifference > 1f)
+            if (player)
             {
-                if (yDifference < 0f)
+
+                 yDifference = player.transform.position.y - transform.position.y;
+                if (yDifference > .3f)
                 {
-                    transform.Translate(Vector3.down * movementSpeed * Time.deltaTime);
+                    if (yDifference < 0f)
+                    {
+                        transform.Translate(Vector3.down * movementSpeed * Time.deltaTime);   
+                    }
+                    if (yDifference > 0f)
+                    {
+                        transform.Translate(Vector3.up * movementSpeed * Time.deltaTime);
+                    }
                 }
                 else
                 {
-                    transform.Translate(Vector3.up * movementSpeed * Time.deltaTime);
+                    transform.Translate((player.transform.position - transform.position).normalized * movementSpeed * Time.deltaTime);
                 }
-            }
-            else
-            {
-                transform.Translate((player.transform.position - transform.position).normalized * movementSpeed * Time.deltaTime);
-            }
-            float xDifference = player.transform.position.x - transform.position.x;
-            if (xDifference > 1f)
-            {
-                if (xDifference < 0f)
+                 xDifference = player.transform.position.x - transform.position.x;
+                if (xDifference > .1f)
                 {
-                    transform.Translate(Vector3.left * movementSpeed * Time.deltaTime);
+                    if (xDifference < 0f)
+                    {
+                        transform.Translate(Vector3.left * movementSpeed * Time.deltaTime);
+
+                    } if (xDifference > 0f)
+                    {
+                        transform.Translate(Vector3.right * movementSpeed * Time.deltaTime);
+                    }
                 }
                 else
                 {
-                    transform.Translate(Vector3.right * movementSpeed * Time.deltaTime);
+                    transform.Translate((player.transform.position - transform.position).normalized * movementSpeed * Time.deltaTime);
+
                 }
-            }
-            else
-            {
-                transform.Translate((player.transform.position - transform.position).normalized * movementSpeed * Time.deltaTime);
 
             }
         }

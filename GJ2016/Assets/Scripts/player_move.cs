@@ -6,7 +6,7 @@ public class player_move : MonoBehaviour {
     public int health;
     public int damage;
     public int power;
-
+    public Animator anim;
     public float knifeVelocity;
     public Rigidbody2D knife;
     public Text healthText;
@@ -20,6 +20,7 @@ public class player_move : MonoBehaviour {
     float attackTimer;
     float hitTimer;
     int maxPower = 140;
+    
     void Start()
     {
         health = 100;
@@ -35,17 +36,34 @@ public class player_move : MonoBehaviour {
         attackTimer = 0.0f;
         powerSlider.minValue = 0;
         powerSlider.maxValue = maxPower;
+        anim = GetComponent<Animator>();
        
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            anim.SetInteger("Movement", 2);
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            anim.SetInteger("Movement", 1);
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            anim.SetInteger("Movement", 4);
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            anim.SetInteger("Movement", 3);
+        }
         healthText.text = ("HP: " + health);
         healthSlider.value = health;
         powerText.text = ("Power: " + power);
         powerSlider.value = power;
         transform.Translate(new Vector3(Input.GetAxis("Horizontal") * movementSpeed, Input.GetAxis("Vertical") * movementSpeed, 0) * Time.deltaTime);
-
+       
         if (Input.GetKeyDown(KeyCode.UpArrow) && Time.time >= attackTimer)
         {
             Rigidbody2D knifeThrow = Instantiate(knife, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), transform.rotation) as Rigidbody2D;
@@ -117,4 +135,5 @@ public class player_move : MonoBehaviour {
             }
         }
     }
+   
 }
