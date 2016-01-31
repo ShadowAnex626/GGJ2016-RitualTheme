@@ -94,7 +94,11 @@ public class Enemy1 : MonoBehaviour
         if (col.gameObject.tag == "Knife")
         {
             Debug.Log("Hit1");
+<<<<<<< HEAD
             health -= playerScript.damage;
+=======
+            health -= 20;
+>>>>>>> refs/remotes/origin/terry2
             Debug.Log("Health of enemy 1 is" + health);
         }
     }
