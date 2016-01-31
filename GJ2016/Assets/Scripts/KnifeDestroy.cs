@@ -19,20 +19,7 @@ public class KnifeDestroy : MonoBehaviour {
 	}
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Enemy" || col.gameObject.tag == "Map")
-        if (col.gameObject.tag == "Enemy1")
-        {
-            Destroy(gameObject);
-        }
-        if (col.gameObject.tag == "Enemy2")
-        {
-            Destroy(gameObject);
-        }
-        if (col.gameObject.tag == "Enemy3")
-        {
-            Destroy(gameObject);
-        }
-        if (col.gameObject.tag == "Map")
+        if (col.gameObject.tag == "Enemy" || col.gameObject.tag == "Enemy1" || col.gameObject.tag == "Enemy2" || col.gameObject.tag == "Enemy3" ||col.gameObject.tag == "Map")
         {
             Destroy(gameObject);
         }

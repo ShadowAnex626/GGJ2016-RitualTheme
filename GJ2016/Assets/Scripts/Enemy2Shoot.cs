@@ -23,7 +23,7 @@ public class Enemy2Shoot : MonoBehaviour {
     {
         //this makes the ninja shoot a star at a regular, user selected interval,
         //at the characters location at that instant
-        if (Time.time > starTimer)
+        if (Time.time > starTimer && Throw)
         {
             Vector2 blueArrow = new Vector2(target.position.x, target.position.y);
             Vector2 ninPos = new Vector2(transform.position.x, transform.position.y);
@@ -35,8 +35,18 @@ public class Enemy2Shoot : MonoBehaviour {
             arrowThrow.transform.Rotate(0, 0, 90);
 
             starTimer = Time.time + RateofStar;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
             Throw = true;
         }
-
+        else
+        {
+            Throw = false;
+        }
     }
 }
