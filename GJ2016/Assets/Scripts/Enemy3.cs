@@ -12,9 +12,9 @@ public class Enemy3 : MonoBehaviour {
     Animator anim;
 
     //private variables
-    float movementSpeed = .5f;
+    float movementSpeed = .3f;
     GameObject player;
-
+    float maxSpeed = 2.5f;
     // Use this for initialization
     void Start()
     {
@@ -30,34 +30,31 @@ public class Enemy3 : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (movementSpeed >= maxSpeed)
+        {
+            movementSpeed = maxSpeed;
+        }
         float yDifference = player.transform.position.y - transform.position.y;
         float xDifference = player.transform.position.x - transform.position.x;
-        Debug.Log(yDifference);
-
-        //if (yDifference > xDifference)
-        //{
-        //    if (yDifference > 0.0f)
-        //    {
-        //        anim.SetInteger("Movement", 2);
-        //    }
-        //    if (yDifference < 0.0f)
-        //    {
-        //        anim.SetInteger("Movement", 4);
-        //    }
-        //}
-            if (xDifference > 0.0f)
-            {
-                anim.SetInteger("Movement", 3);
-            }
+      
             if (xDifference < 0.0f)
             {
                 anim.SetInteger("Movement", 1);
             }
+            if (yDifference < 0.0f)
+            {
+                anim.SetInteger("Movement", 4);
+            }
+            if (xDifference > 0.0f)
+            {
+                anim.SetInteger("Movement", 3);
+            }        
+           
         if (isFollowing == true)
         {
             if (player)
             {
-
+                movementSpeed += 0.015f;
                  yDifference = player.transform.position.y - transform.position.y;
                 if (yDifference > .3f)
                 {
@@ -105,6 +102,19 @@ public class Enemy3 : MonoBehaviour {
         if (col.gameObject.tag == "Knife")
         {
             health -= playerScript.damage;
+        }
+        if (col.gameObject.tag == "Player")
+        {
+           
+            movementSpeed = .3f;
+        }
+    }
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            
+            movementSpeed = .3f;
         }
     }
     void OnTriggerEnter2D(Collider2D col)

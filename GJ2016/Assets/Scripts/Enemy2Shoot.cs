@@ -4,7 +4,7 @@ using System.Collections;
 public class Enemy2Shoot : MonoBehaviour {
 
     public Transform target;
-    public float speed = 5f;
+    public float speed = 1f;
     private float range;
     public Rigidbody2D arrow;
     public float starTimer;

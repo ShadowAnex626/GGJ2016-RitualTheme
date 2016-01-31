@@ -13,25 +13,42 @@ public class Enemy2 : MonoBehaviour {
     public int power = 500;
     public bool isFollowing;
     //Variables used for this class
-    int movementSpeed;
+    float movementSpeed;
     int shotSpeed;
     GameObject player;
+    Animator anim;
 	// Use this for initialization
 	void Start () {
-        movementSpeed = 1;
+        movementSpeed = .5f;
         shotSpeed = 5;
         //Finding Player
         player = GameObject.FindWithTag("Player");
         isFollowing = false;
+        anim = GetComponent<Animator>();
 	}
 
     // Update is called once per frame
     void Update()
     {
+        float yDifference = player.transform.position.y - transform.position.y;
+        float xDifference = player.transform.position.x - transform.position.x;
+
+        if (xDifference < 0.0f)
+        {
+            anim.SetInteger("Movement", 1);
+        }
+        if (yDifference < 0.0f)
+        {
+            anim.SetInteger("Movement", 4);
+        }
+        if (xDifference > 0.0f)
+        {
+            anim.SetInteger("Movement", 3);
+        }        
         if (isFollowing == true)
         {
 
-            float yDifference = player.transform.position.y - transform.position.y;
+             yDifference = player.transform.position.y - transform.position.y;
             if (yDifference > 1f)
             {
                 if (yDifference < 0f)
@@ -47,7 +64,7 @@ public class Enemy2 : MonoBehaviour {
             {
                 transform.Translate((player.transform.position - transform.position).normalized * movementSpeed * Time.deltaTime);
             }
-            float xDifference = player.transform.position.x - transform.position.x;
+             xDifference = player.transform.position.x - transform.position.x;
             if (xDifference > 1f)
             {
                 if (xDifference < 0f)

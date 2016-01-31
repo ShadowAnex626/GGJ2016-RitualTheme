@@ -10,9 +10,9 @@ public class Enemy1 : MonoBehaviour
     public int damage = 10;
     public int power = 500;
     public bool isFollowing;
-
+    Animator anim;
     //private variables
-    int movementSpeed = 1;
+    float movementSpeed = .5f;
     GameObject player;
 
     // Use this for initialization
@@ -23,7 +23,7 @@ public class Enemy1 : MonoBehaviour
 
         //Finding Player
         player = GameObject.FindWithTag("Player");
-
+        anim = GetComponent<Animator>();
         isFollowing = false;
 
     }
@@ -31,9 +31,25 @@ public class Enemy1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float yDifference = player.transform.position.y - transform.position.y;
+        float xDifference = player.transform.position.x - transform.position.x;
+
+        if (xDifference < 0.0f)
+        {
+            anim.SetInteger("Movement", 1);
+        }
+        if (yDifference < 0.0f)
+        {
+            anim.SetInteger("Movement", 4);
+        }
+        if (xDifference > 0.0f)
+        {
+            anim.SetInteger("Movement", 3);
+        }        
+
         if(isFollowing == true) {
 
-                float yDifference = player.transform.position.y - transform.position.y;
+                 yDifference = player.transform.position.y - transform.position.y;
                     if (yDifference > 1f)
                     {
                         if (yDifference < 0f)
@@ -49,7 +65,7 @@ public class Enemy1 : MonoBehaviour
                     {
                         transform.Translate((player.transform.position - transform.position).normalized * movementSpeed * Time.deltaTime);
                     }
-                    float xDifference = player.transform.position.x - transform.position.x;
+                     xDifference = player.transform.position.x - transform.position.x;
                     if (xDifference > 1f)
                     {
                         if (xDifference < 0f)

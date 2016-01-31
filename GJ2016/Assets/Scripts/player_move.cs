@@ -26,10 +26,9 @@ public class player_move : MonoBehaviour {
         health = 100;
         damage = 20;
         power = 65;
-        movementSpeed = 5;
-        knifeVelocity = 4f;
+        movementSpeed = 1.5f;
+        knifeVelocity = 2.5f;
         attackSpeed = .4f;
-        knifeVelocity = 10;
         maxHealth = 100;
         healthSlider.minValue = 0;
         healthSlider.maxValue = maxHealth;
@@ -66,32 +65,33 @@ public class player_move : MonoBehaviour {
        
         if (Input.GetKeyDown(KeyCode.UpArrow) && Time.time >= attackTimer)
         {
-            Rigidbody2D knifeThrow = Instantiate(knife, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), transform.rotation) as Rigidbody2D;
+            Rigidbody2D knifeThrow = Instantiate(knife, new Vector3(transform.position.x, transform.position.y + 0.2f, transform.position.z), transform.rotation) as Rigidbody2D;
             knifeThrow.velocity = transform.TransformDirection(new Vector3(0, knifeVelocity, 0));
+            knifeThrow.transform.Rotate(0f, 0, 315f);
             attackTimer = Time.time + attackSpeed;
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow) && Time.time >= attackTimer)
         {
-            Rigidbody2D knifeThrow = Instantiate(knife, new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z), transform.rotation) as Rigidbody2D;
+            Rigidbody2D knifeThrow = Instantiate(knife, new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z), transform.rotation) as Rigidbody2D;
             knifeThrow.velocity = transform.TransformDirection(new Vector3(0, -knifeVelocity, 0));
-            knifeThrow.transform.Rotate(180f, 0, 0);
+            knifeThrow.transform.Rotate(0f, 0, 135f);
             attackTimer = Time.time + attackSpeed;
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) && Time.time >= attackTimer)
         {
-            Rigidbody2D knifeThrow = Instantiate(knife, new Vector3(transform.position.x - 1f, transform.position.y, transform.position.z), transform.rotation) as Rigidbody2D;
+            Rigidbody2D knifeThrow = Instantiate(knife, new Vector3(transform.position.x - 0.2f, transform.position.y, transform.position.z), transform.rotation) as Rigidbody2D;
             knifeThrow.velocity = transform.TransformDirection(new Vector3(-knifeVelocity, 0, 0));
-            knifeThrow.transform.Rotate(0, 0, 90f);
+            knifeThrow.transform.Rotate(0, 0, 45f);
             attackTimer = Time.time + attackSpeed;
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow) && Time.time >= attackTimer)
         {
-            Rigidbody2D knifeThrow = Instantiate(knife, new Vector3(transform.position.x + 1f, transform.position.y, transform.position.z), transform.rotation) as Rigidbody2D;
+            Rigidbody2D knifeThrow = Instantiate(knife, new Vector3(transform.position.x + 0.2f, transform.position.y, transform.position.z), transform.rotation) as Rigidbody2D;
             knifeThrow.velocity = transform.TransformDirection(new Vector3(knifeVelocity, 0, 0));
-            knifeThrow.transform.Rotate(0, 0, -90f);
+            knifeThrow.transform.Rotate(0, 0, 225f);
             attackTimer = Time.time + attackSpeed;
 
         }
@@ -122,17 +122,6 @@ public class player_move : MonoBehaviour {
         if (col.gameObject.tag == "Arrow")
         {
             health -= 20;
-        }
-    }
-    void OnCollisionStay2D(Collision2D col)
-    {
-        if (col.gameObject.tag == "Enemy")
-        {
-            if (Time.time >= hitTimer)
-            {
-                health -= enemy1Script.damage;
-                hitTimer = Time.time + .5f;
-            }
         }
     }
    
