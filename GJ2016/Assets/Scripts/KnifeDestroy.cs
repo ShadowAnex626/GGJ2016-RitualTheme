@@ -19,6 +19,10 @@ public class KnifeDestroy : MonoBehaviour {
 	}
     void OnCollisionEnter2D(Collision2D col)
     {
+<<<<<<< HEAD
+=======
+        if (col.gameObject.tag == "Enemy" || col.gameObject.tag == "Map")
+>>>>>>> refs/remotes/origin/terry2
         if (col.gameObject.tag == "Enemy1")
         {
             Destroy(gameObject);

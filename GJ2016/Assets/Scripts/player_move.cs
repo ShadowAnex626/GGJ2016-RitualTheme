@@ -5,7 +5,11 @@ using UnityEngine.UI;
 public class player_move : MonoBehaviour {
     //Public Variables
     public int health;
+<<<<<<< HEAD
     public int damage;
+=======
+    public int damage = 20;
+>>>>>>> refs/remotes/origin/terry2
     public int power = 0;
     public float knifeVelocity;
 
@@ -27,11 +31,24 @@ public class player_move : MonoBehaviour {
     float attackTimer;
     float hitTimer;
     int maxPower = 140;
+<<<<<<< HEAD
     
     void Start()
     {
 
         damage = 20;
+=======
+
+    private GameObject[] enemies;
+    public Transform bloodTrail;
+
+    static public bool bloody = false;
+
+    void Start()
+    {
+
+        //damage = 20;
+>>>>>>> refs/remotes/origin/terry2
         health = 100;
         knifeVelocity = 2.5f;
         attackSpeed = .4f;
@@ -40,7 +57,15 @@ public class player_move : MonoBehaviour {
         attackTimer = 0.0f;
         powerSlider.minValue = 0;
         powerSlider.maxValue = maxPower;
+<<<<<<< HEAD
         anim = GetComponent<Animator>();
+=======
+
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        anim = GetComponent<Animator>();
+
+>>>>>>> refs/remotes/origin/terry2
        
     }
 
@@ -107,6 +132,10 @@ public class player_move : MonoBehaviour {
             power = 0;
             
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/terry2
         if (health >= maxHealth)
         {
             health = maxHealth;
@@ -115,8 +144,47 @@ public class player_move : MonoBehaviour {
         {
             power = maxPower;
         }
+<<<<<<< HEAD
 
     }
+=======
+            GetClosestEnemy(enemies);
+    }
+
+    GameObject GetClosestEnemy(GameObject[] enemies)
+    {
+        GameObject tMin = null;
+        float minDist = Mathf.Infinity;
+        Vector3 currentPos = transform.position;
+
+        if (!bloody)
+        {
+
+            foreach (GameObject t in enemies)
+            {
+                float dist = Vector3.Distance(t.transform.position, currentPos);
+                if (dist < minDist)
+                {
+                    tMin = t;
+                    minDist = dist;
+
+                    //if (power >= 1 && Input.GetKeyDown(KeyCode.L))
+                    //{
+                        //Instantiate(bloodTrail, tMin.transform.position, tMin.transform.rotation);
+                        Destroy(tMin);
+                        bloody = true;
+                    //}
+                }
+            }
+            return tMin;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+>>>>>>> refs/remotes/origin/terry2
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Enemy1")

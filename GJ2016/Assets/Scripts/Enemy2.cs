@@ -95,7 +95,11 @@ public class Enemy2 : MonoBehaviour {
         if (col.gameObject.tag == "Knife")
         {
             Debug.Log("Hit2");
+<<<<<<< HEAD
             health -= playerScript.damage;
+=======
+            health -= 20;
+>>>>>>> refs/remotes/origin/terry2
         }
     }
     void OnTriggerEnter2D(Collider2D col)
