@@ -8,7 +8,7 @@ public class Boss : MonoBehaviour {
     // public variable
     public int health;
     public int damage = 20;
-    public int power = 7;
+    public int power = 70;
     public bool isFollowing;
     Animator anim;
 
@@ -19,6 +19,8 @@ public class Boss : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+
+       
         //Initializing stat variables
         health = 300;
         //Finding Player
@@ -31,6 +33,7 @@ public class Boss : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(health);
         if (movementSpeed >= maxSpeed)
         {
             movementSpeed = maxSpeed;
@@ -103,8 +106,10 @@ public class Boss : MonoBehaviour {
     {
         if (col.gameObject.tag == "Knife")
         {
-            
+            Debug.Log(playerScript.damage);
+           
             health -= playerScript.damage;
+
         }
         if (col.gameObject.tag == "Player")
         {

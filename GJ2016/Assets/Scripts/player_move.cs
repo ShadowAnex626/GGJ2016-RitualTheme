@@ -5,11 +5,9 @@ using UnityEngine.UI;
 public class player_move : MonoBehaviour {
     //Public Variables
     public int health;
-<<<<<<< HEAD
-    public int damage;
-=======
+
     public int damage = 20;
->>>>>>> refs/remotes/origin/terry2
+
     public int power = 0;
     public float knifeVelocity;
 
@@ -19,6 +17,7 @@ public class player_move : MonoBehaviour {
     public Text healthText;
     public Slider healthSlider;
     public Enemy1 enemy1Script;
+    public Boss bossScript;
     public Text powerText;
     public Slider powerSlider;
     public Enemy2 enemy2Scipt;
@@ -31,14 +30,6 @@ public class player_move : MonoBehaviour {
     float attackTimer;
     float hitTimer;
     int maxPower = 140;
-<<<<<<< HEAD
-    
-    void Start()
-    {
-
-        damage = 20;
-=======
-
     private GameObject[] enemies;
     public Transform bloodTrail;
 
@@ -48,7 +39,7 @@ public class player_move : MonoBehaviour {
     {
 
         //damage = 20;
->>>>>>> refs/remotes/origin/terry2
+
         health = 100;
         knifeVelocity = 2.5f;
         attackSpeed = .4f;
@@ -57,15 +48,11 @@ public class player_move : MonoBehaviour {
         attackTimer = 0.0f;
         powerSlider.minValue = 0;
         powerSlider.maxValue = maxPower;
-<<<<<<< HEAD
+
         anim = GetComponent<Animator>();
-=======
 
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        anim = GetComponent<Animator>();
-
->>>>>>> refs/remotes/origin/terry2
        
     }
 
@@ -132,10 +119,7 @@ public class player_move : MonoBehaviour {
             power = 0;
             
         }
-<<<<<<< HEAD
-=======
 
->>>>>>> refs/remotes/origin/terry2
         if (health >= maxHealth)
         {
             health = maxHealth;
@@ -144,11 +128,8 @@ public class player_move : MonoBehaviour {
         {
             power = maxPower;
         }
-<<<<<<< HEAD
 
-    }
-=======
-            GetClosestEnemy(enemies);
+
     }
 
     GameObject GetClosestEnemy(GameObject[] enemies)
@@ -184,7 +165,7 @@ public class player_move : MonoBehaviour {
         }
     }
 
->>>>>>> refs/remotes/origin/terry2
+
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Enemy1")
@@ -196,6 +177,11 @@ public class player_move : MonoBehaviour {
         {
             health -= enemy3Script.damage;
          
+        }
+        if (col.gameObject.tag == "Boss")
+        {
+            health -= bossScript.damage;
+
         }
 
         if (col.gameObject.tag == "Arrow")
