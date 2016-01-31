@@ -103,11 +103,9 @@ public class Enemy3 : MonoBehaviour {
         if (col.gameObject.tag == "Knife")
         {
             Debug.Log("Hit3");
-<<<<<<< HEAD
+
             health -= playerScript.damage;
-=======
-            health -= 20;
->>>>>>> refs/remotes/origin/terry2
+
         }
         if (col.gameObject.tag == "Player")
         {
